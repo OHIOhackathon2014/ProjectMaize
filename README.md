@@ -9,7 +9,8 @@ Team Members:
 Austin Kochs;
 The Ohio State University;
 Senior;
-Chemistry and Computer & Information Science;
+Majors: Chemistry and Computer & Information Science;
+Minor: Chinese;
 http://www.galvintjime.com/
 
 Nathan Seese
