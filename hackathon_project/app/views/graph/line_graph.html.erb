@@ -1,8 +1,8 @@
-<h1>Graph#line_graph</h1>
+<h1><%= params[:repo_name] %></h1>
 <%= javascript_include_tag "http://code.highcharts.com/highcharts.js", "chartkick" %>
 <%= line_chart [
-    {name: 'Deletions', data: @dates.zip(@deletions), color: "#356"},
-    {name: 'Additions', data: @dates.zip(@additions), color: "#935"}],
+    {name: 'Deletions', data: @dates.zip(@deletions)},
+    {name: 'Additions', data: @dates.zip(@additions)}],
     colors: ["#bdac3d", "#b33f3d"]
-    #library: {backgroundColor: "#427fa4"}
+    #library: {chart: {backgroundColor: "#427fa4"}}
 %>
