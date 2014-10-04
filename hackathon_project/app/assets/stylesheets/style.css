@@ -19,12 +19,10 @@ img{
 
 input{
 	margin: 40px auto;
-	width: 960px;
-	text-align: center;
 }
 
 .button_group{
-	margin: 40px auto;
+	margin: 50px auto;
 	width: 960px;
 	text-align: center;
 }
