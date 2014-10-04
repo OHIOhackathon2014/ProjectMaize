@@ -1,8 +1,8 @@
 <h1>Graph#line_graph</h1>
-<%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
+<%= javascript_include_tag "http://code.highcharts.com/highcharts.js", "chartkick" %>
 <%= line_chart [
     {name: 'Deletions', data: @dates.zip(@deletions), color: "#356"},
     {name: 'Additions', data: @dates.zip(@additions), color: "#935"}],
-    colors: ["#bdac3d", "#b33f3d"],
-    library: {backgroundColor: "#427fa4"}
+    colors: ["#bdac3d", "#b33f3d"]
+    #library: {backgroundColor: "#427fa4"}
 %>
