@@ -3,6 +3,8 @@
 <head>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="JS/Chart.js"></script>
+    <script src="JS/page_transition.js"></script>
+    <script src="JS/graphs.js"></script>
     
     <link rel="stylesheet" type="text/css" href="stylesheet.css">
 	<meta charset="UTF-8">
@@ -14,34 +16,11 @@
 <!-- Graph stuff! -->
 	<canvas id="myChart" width="400" height="400">
 	<script>
-		var data = {
-    labels: ["January", "February", "March", "April", "May", "June", "July"],
-    datasets: [
-        {
-            label: "Lines Commited",
-            fillColor: "rgba(255,255,255,0.2)",
-            strokeColor: "rgba(151,187,205,1)",
-            pointColor: "rgba(151,187,205,1)",
-            pointStrokeColor: "#fff",
-            pointHighlightFill: "#fff",
-            pointHighlightStroke: "rgba(151,187,205,1)",
-            data: [28, 48, 40, 19, 86, 27, 90]
-        }
-    ]
-};
-
-
-		// Get context with jQuery - using jQuery's .get() method.
-		var ctx = $("#myChart").get(0).getContext("2d");
-		// This will get the first returned node in the jQuery collection.
-		var myLineChart = new Chart(ctx).Line(data);
-		
-		canvas.addEventListener('click', function(evt){
-    alert(myLineChart.getPointsAtEvent(evt));}, false);
-		    
+	//put script here for graph
 	</script>
 
     </canvas>
+    <a href="Hackathon.html">LINK</a>
 
 
 
