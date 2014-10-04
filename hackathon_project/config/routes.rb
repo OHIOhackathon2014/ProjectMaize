@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'graph/owner_compare/:owner', to: 'graph#owner_compare'
+
   get 'graph/compare'
 
   #get 'graph/line_graph/:owner/:repo_name', to: 'graph#line_graph', via: post

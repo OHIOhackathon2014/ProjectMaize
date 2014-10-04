@@ -1,0 +1,7 @@
+<h1><%= "Repositories of #{params[:owner]}" %></h1>
+<%= javascript_include_tag "http://code.highcharts.com/highcharts.js", "chartkick" %>
+<%= line_chart @repos.map {|r|
+      max = r.map{|c| c.total.to_i}.max
+      portion_maxes = r.map{|c| c.total.to_f/max}
+      {name: @names[@repos.index(r)], data: r.map{|c| c.date}.zip(portion_maxes)}}
+%>

@@ -31,7 +31,7 @@ class GithubCommit
   
   # Example: generate_commits('OHIOhackathon2014', 'ProjectMaize')
   def self.generate_commits(owner, repo_name)
-    url = "https://api.github.com/repos/#{owner}/#{repo_name}/commits?access_token=#{TOKEN}"
+    url = generate_commits_url owner, repo_name
     parsed_json = JSON.parse open(url).read
     return parsed_json.map do |j|
       c = self.new
@@ -41,6 +41,10 @@ class GithubCommit
       c.generate_json!
       c
     end
+  end
+
+  def self.generate_commits_url(owner, repo_name)
+    return "https://api.github.com/repos/#{owner}/#{repo_name}/commits?access_token=#{TOKEN}"
   end
 
   def self.generate_from_url(url)
