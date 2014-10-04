@@ -1,7 +1,7 @@
 require 'open-uri'
 require 'json'
 
-Token = 'ae8911808ca7162e61ab46bdc79bd7d2e3fe41b5' # this probably shouldn't be hardcoded, change this later
+TOKEN = 'ae8911808ca7162e61ab46bdc79bd7d2e3fe41b5' # this probably shouldn't be hardcoded, change this later
 
 class GithubCommit
   attr_accessor :name
@@ -31,13 +31,13 @@ class GithubCommit
   
   # Example: generate_commits('OHIOhackathon2014', 'ProjectMaize')
   def self.generate_commits(owner, repo_name)
-    url = "https://api.github.com/repos/#{owner}/#{repo_name}/commits?access_token=#{Token}"
+    url = "https://api.github.com/repos/#{owner}/#{repo_name}/commits?access_token=#{TOKEN}"
     parsed_json = JSON.parse open(url).read
     return parsed_json.map do |j|
       c = self.new
       c.date_parse j['commit']['committer']['date']
       c.name = j['commit']['committer']['name']
-      c.url  = j['url'] + "?access_token=#{Token}"
+      c.url  = j['url'] + "?access_token=#{TOKEN}"
       c.generate_json!
       c
     end
