@@ -14,10 +14,9 @@ Minor: Chinese;
 http://www.galvintjime.com/
 
 Nathan Seese
-University
-Year
-Major
-Website
+The Ohio State University
+Sophmore
+CS Major
 
 Joe Van Gundy
 University
