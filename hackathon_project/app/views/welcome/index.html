@@ -1,22 +1,40 @@
 <!DOCTYPE html>
 	<head>
 		<link rel="stylesheet" type="text/css" href="css/style.css">
-	</head
-><html>
+        <script language="javascript"> 
+			function toggle(showHideDiv, switchTextDiv) {
+				var list = document.getElementsByClassName('toggle');
+				
+				for ( i = 0; i < list.length; i++ ) {
+					list.item(i).style.display = "none";
+				}
+				
+				var ele = document.getElementById(showHideDiv);
+				var text = document.getElementById(switchTextDiv);
+				if(ele.style.display == "none") {
+  		  			ele.style.display = "block";
+ 			 	}
+			}
+		</script>
+	</head>
+<html>
 	<body>
 		<img src="images/header.png" alt="Logo">
 		<table>
 			<tr>
 		    	<td>
- 					<button type="button"><img src="images/repo.png" alt="Repo"></button>
+ 					<a id="displayRepo" href="javascript:toggle('toggleRepo','displayRepo');"><img src="images/repo.png" alt="Repo"></a>
 		        </td>
 				<td>
-       				<button type="button"><img src="images/user.png" alt="User"></button>
+       				<a id="displayUser" href="javascript:toggle('toggleUser','displayUser');"><img src="images/user.png" alt="User"></a>
        			</td>
        			<td>
-					<button type="button"><img src="images/org.png" alt="Organization"></button>
+					<a id="displayOrg" href="javascript:toggle('toggleOrg','displayOrg');"><img src="images/org.png" alt="Organization"></a>
     			</td>
     		</tr>
 		</table>
+        <div id="toggleRepo" class="toggle" style="display: none"><h1>peek-a-boo1</h1></div>
+        <div id="toggleUser" class="toggle" style="display: none"><h1>peek-a-boo2</h1></div>
+        <div id="toggleOrg" class="toggle" style="display: none"><h1>peek-a-boo3</h1></div>
 	</body>
 </html> 
