@@ -2,47 +2,43 @@
 
 Token = 'ae8911808ca7162e61ab46bdc79bd7d2e3fe41b5'
 
-#require 'github_api'
 require 'open-uri'
 require 'json'
 
-def generate_commits(owner, repo_name)
-  url = "https://api.github.com/repos/#{owner}/#{reponame}/commits?access_token=#{Token}"
-  parsed_json = JSON.parse open(url).read
-  return parsed_json.map do |j|
-    
-
-class RepoCommits
+class Commit
   attr_accessor :date
   attr_accessor :name
   attr_accessor :url
-  attr_accessor :additions
-  attr_accessor :deletions
   attr_accessor :json
 
-  def initiatize(owner, reponame
-
   def generate_json!
-    @json = JSON.parse(open(url + '?access_token=' + Token).read)
+    @json = JSON.parse(open(url).read)
+  end
+
+  def additions
+    @json['stats']['additions']
+  end
+
+  def deletions
+    @json['stats']['deletions']
+  end
+
+  def total
+    @json['stats']['total']
   end
 end
 
-def commits(gh, repo_user, repo_name) 
-  return gh.repos.commits.all(repo_user, repo_name)[0, 1].map do |c| # NOTE: currently only does first two commits
-    a = Commit.new
-    a.date = c[:commit][:committer][:date]
-    a.name = c[:commit][:committer][:name]
-    a.url = c[:url]
-    a.additions = a.page_json['stats']['additions']
-    a.deletions = a.page_json['stats']['deletions']
-    a
+def generate_commits(owner, repo_name)
+  url = "https://api.github.com/repos/#{owner}/#{repo_name}/commits?access_token=#{Token}"
+  parsed_json = JSON.parse open(url).read
+  return parsed_json.map do |j|
+    c = Commit.new
+    c.date = j['commit']['committer']['date']
+    c.name = j['commit']['committer']['name']
+    c.url  = j['url'] + "?access_token=#{Token}"
+    c.generate_json!
+    c
   end
 end
 
-#dates_by_user('OHIOhackathon2014', 'ProjectMaize')
-
-#Github.repos.commits.all('OHIOhackathon2014', 'ProjectMaize')
-
-#JSON.parse(open('https://api.github.com/repos/OHIOhackathon2014/ProjectMaize/commits/b3d0b2e7d8058deed9f61b5ddf2f3c12679fc852').read)
-
-puts commits(Github.new oauth_token: Token, 'OHIOhackathon2014', 'ProjectMaize')
+# Example: generateCommits('OHIOhackathon2014', 'ProjectMaize')
