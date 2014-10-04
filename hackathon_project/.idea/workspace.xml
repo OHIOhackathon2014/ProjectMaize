@@ -88,6 +88,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="recentsLimit" value="5" />
+    <property name="FullScreen" value="false" />
   </component>
   <component name="RunManager" selected="Rails.Development: hackathon_project">
     <configuration default="true" type="RakeRunConfigurationType" factoryName="Rake">
@@ -250,6 +251,9 @@
     </list>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="bbdc0e06-d659-4735-8ada-6420929ab30b" name="Default" comment="" />
