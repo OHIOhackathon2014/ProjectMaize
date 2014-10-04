@@ -19,20 +19,14 @@
 </head>
 <html>
   <body>
-    <%= image_tag "header.png" %>
-    <table>
-      <tr>
-	<td>
- 	  <a id="displayRepo" href="javascript:toggle('toggleRepo','displayRepo');"><%= image_tag "repo.png" %></a>  
-	</td>
-	<td>
-       	  <a id="displayUser" href="javascript:toggle('toggleUser','displayUser');"><%= image_tag "user.png" %></a>
-       	</td>
-       	<td>
-	  <a id="displayOrg" href="javascript:toggle('toggleOrg','displayOrg');"><%= image_tag "org.png" %></a>
-    	</td>
-      </tr>
-    </table>
+    <div class="header"><%= image_tag "header.png" %></div>
+
+    <div class="button_group">
+ 	  <div class="buttons"><a id="displayRepo" href="javascript:toggle('toggleRepo','displayRepo');"><%= image_tag "repo.png" %></a></div>
+      <div class="buttons"><a id="displayUser" href="javascript:toggle('toggleUser','displayUser');"><%= image_tag "user.png" %></a></div>
+	  <div class="buttons"><a id="displayOrg" href="javascript:toggle('toggleOrg','displayOrg');"><%= image_tag "org.png" %></a></div>
+    </div>
+
     <%= form_tag({controller: "graph", action: "line_graph"}) do %>
       <%= label_tag :owner, "Owner of repository" %>
       <%= text_field_tag :owner %>
