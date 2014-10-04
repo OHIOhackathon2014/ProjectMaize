@@ -10,4 +10,9 @@ class GraphController < ApplicationController
     @deletions = @cs.map{|c| c.deletions}
     @dates  = @cs.map{|c| c.date}
   end
+
+  def compare
+    @repo_owners_names = params[:repos].split(';')
+    @repos = @repo_owners_names.map{|s| s.split(':')}.map{|r| GithubCommit.generate_commits(r[0], r[1])}
+  end
 end
