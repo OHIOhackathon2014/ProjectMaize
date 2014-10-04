@@ -28,11 +28,13 @@
     </div>
 
     <%= form_tag({controller: "graph", action: "line_graph"}) do %>
+    <div class="button_group">
       <%= label_tag :owner, "Owner of repository" %>
       <%= text_field_tag :owner %>
       
       <%= label_tag :repo_name, "Repository name" %>
       <%= text_field_tag :repo_name %>
+    </div>
     <div id="toggleRepo" class="toggle" style="display: none"><h1>peek-a-boo1</h1>     
       <%= radio_button_tag(:add_sub, "add_sub") %>
       <%= label_tag(:add_sub, "Additions and Subtractions") %>

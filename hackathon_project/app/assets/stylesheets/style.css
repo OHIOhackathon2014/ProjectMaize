@@ -24,6 +24,7 @@ input{
 .button_group{
 	margin: 50px auto;
 	width: 960px;
+	text-align: center;
 }
 
 .toggle{
