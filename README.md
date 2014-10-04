@@ -1,7 +1,7 @@
 
-Project Name
-============
-Tell us a bit about your project. Go ahead and add your resume to your project repo, it will make it even easier to find. Use the format \<FisrtInitial\>\<LastName\>Resume.pdf
+Project Maize
+=============
+A convient web app to visualize GitHub commits to a project(s) and to track user development.
 
 Team Members:
 =============
