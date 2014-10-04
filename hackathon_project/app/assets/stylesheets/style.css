@@ -17,7 +17,7 @@ img{
 	width: 33%;
 }
 
-.input{
+input{
 	margin: 40px auto;
 	width: 960px;
 	text-align: center;
@@ -26,6 +26,7 @@ img{
 .button_group{
 	margin: 40px auto;
 	width: 960px;
+	text-align: center;
 }
 
 .toggle{
