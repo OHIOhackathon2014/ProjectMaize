@@ -1,5 +1,5 @@
 <h1>GitStuff#text</h1>
 <% for @c in @cs %>
   <li><%= @c.name %> added <%= @c.additions %> lines and removed
-    <%= @c.deletions %> lines on <%= @c.date %></li>
+    <%= @c.deletions %> lines on <%= @c.date.to_s %></li>
 <% end %>

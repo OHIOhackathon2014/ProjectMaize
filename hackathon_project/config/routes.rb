@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
-  get 'git_stuff/text'
+  get 'graph/line_graph'
+  get 'graph/line_graph/:owner/:repo_name', to: 'graph#line_graph'
+
+
+  #get ':controller/:action/:owner/:repo_name'
+  get 'git_stuff/text/:owner/:repo_name', to: 'git_stuff#text'
   get 'welcome/index'
 
   # The priority is based upon order of creation: first created -> highest priority.
