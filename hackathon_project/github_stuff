@@ -1,0 +1,42 @@
+#!/usr/bin/ruby
+
+require 'github_api'
+require 'open-uri'
+require 'json'
+
+class Commit
+  attr_accessor :date
+  attr_accessor :name
+  attr_accessor :url
+  attr_accessor :additions
+  attr_accessor :deletions
+  attr_accessor :json
+
+  def total
+    return @additions + @deletions
+  end
+
+  def generate_json!
+    @json = JSON.parse(open(url).read)
+  end
+end
+
+def commits(repo_user, repo_name) 
+  return Github.repos.commits.all(repo_user, repo_name)[0, 1].map do |c| # NOTE: currently only does first two commits
+    a = Commit.new
+    a.date = c[:commit][:committer][:date]
+    a.name = c[:commit][:committer][:name]
+    a.url = c[:url]
+    a.additions = a.page_json['stats']['additions']
+    a.deletions = a.page_json['stats']['deletions']
+    a
+  end
+end
+
+#dates_by_user('OHIOhackathon2014', 'ProjectMaize')
+
+#Github.repos.commits.all('OHIOhackathon2014', 'ProjectMaize')
+
+#JSON.parse(open('https://api.github.com/repos/OHIOhackathon2014/ProjectMaize/commits/b3d0b2e7d8058deed9f61b5ddf2f3c12679fc852').read)
+
+puts commits('OHIOhackathon2014', 'ProjectMaize')
