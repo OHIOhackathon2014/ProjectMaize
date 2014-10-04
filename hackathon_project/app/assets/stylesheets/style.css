@@ -17,6 +17,10 @@ img{
 	width: 33%;
 }
 
+input{
+	margin: 50px auto;
+}
+
 .button_group{
 	margin: 50px auto;
 	width: 960px;
