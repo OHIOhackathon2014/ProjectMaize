@@ -25,7 +25,7 @@ Computer Science and Engineering
 
 
 Olivia Whitman
-University
-Year
-Major
-Website
+The Ohio State University
+Junior, 3rd year
+Computer Science & Engineering
+
