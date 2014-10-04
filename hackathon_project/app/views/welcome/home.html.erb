@@ -1,0 +1,10 @@
+<%= form_tag({controller: "graph", action: "line_graph"}) do %>
+<%= label_tag :owner, "Owner of repository" %>
+<%= text_field_tag :owner %>
+
+<%= label_tag :repo_name, "Repository name" %>
+<%= text_field_tag :repo_name %>
+ 
+<%= submit_tag "submit", class: "submit_button" %>
+
+<% end %>

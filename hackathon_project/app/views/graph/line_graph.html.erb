@@ -1,5 +1,4 @@
-<h1><%= params[:repo_name] %></h1>
-<%= javascript_include_tag "http://code.highcharts.com/highcharts.js", "chartkick" %>
+<h1><%= @repo_name %></h1>
 <%= line_chart [
     {name: 'Deletions', data: @dates.zip(@deletions)},
     {name: 'Additions', data: @dates.zip(@additions)}],
