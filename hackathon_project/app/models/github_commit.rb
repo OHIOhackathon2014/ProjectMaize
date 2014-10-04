@@ -27,6 +27,7 @@ class GithubCommit
   
   def date_parse(d)
     @date = DateTime.parse d
+    @date = Date
   end
   
   # Example: generate_commits('OHIOhackathon2014', 'ProjectMaize')
