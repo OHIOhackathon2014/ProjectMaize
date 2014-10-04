@@ -1,4 +1,4 @@
 source 'https://rubygems.org'
 
-gem "github_api"
+#gem "github_api"
 gem "rails"

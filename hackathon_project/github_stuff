@@ -1,10 +1,18 @@
 #!/usr/bin/ruby
 
-require 'github_api'
+Token = 'ae8911808ca7162e61ab46bdc79bd7d2e3fe41b5'
+
+#require 'github_api'
 require 'open-uri'
 require 'json'
 
-class Commit
+def generate_commits(owner, repo_name)
+  url = "https://api.github.com/repos/#{owner}/#{reponame}/commits?access_token=#{Token}"
+  parsed_json = JSON.parse open(url).read
+  return parsed_json.map do |j|
+    
+
+class RepoCommits
   attr_accessor :date
   attr_accessor :name
   attr_accessor :url
@@ -12,17 +20,15 @@ class Commit
   attr_accessor :deletions
   attr_accessor :json
 
-  def total
-    return @additions + @deletions
-  end
+  def initiatize(owner, reponame
 
   def generate_json!
-    @json = JSON.parse(open(url).read)
+    @json = JSON.parse(open(url + '?access_token=' + Token).read)
   end
 end
 
-def commits(repo_user, repo_name) 
-  return Github.repos.commits.all(repo_user, repo_name)[0, 1].map do |c| # NOTE: currently only does first two commits
+def commits(gh, repo_user, repo_name) 
+  return gh.repos.commits.all(repo_user, repo_name)[0, 1].map do |c| # NOTE: currently only does first two commits
     a = Commit.new
     a.date = c[:commit][:committer][:date]
     a.name = c[:commit][:committer][:name]
@@ -39,4 +45,4 @@ end
 
 #JSON.parse(open('https://api.github.com/repos/OHIOhackathon2014/ProjectMaize/commits/b3d0b2e7d8058deed9f61b5ddf2f3c12679fc852').read)
 
-puts commits('OHIOhackathon2014', 'ProjectMaize')
+puts commits(Github.new oauth_token: Token, 'OHIOhackathon2014', 'ProjectMaize')
