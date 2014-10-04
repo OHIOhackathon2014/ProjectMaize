@@ -9,7 +9,7 @@ img{
 }
 
 .header{
-	margin-top: 50px;
+	margin-top: 30px;
 }
 
 .buttons{
@@ -17,14 +17,15 @@ img{
 	width: 33%;
 }
 
-input{
-	margin: 50px auto;
+.input{
+	margin: 30px auto;
+	width: 960px;
+	text-align: center;
 }
 
 .button_group{
-	margin: 50px auto;
+	margin: 30px auto;
 	width: 960px;
-	text-align: center;
 }
 
 .toggle{
