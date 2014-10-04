@@ -1,0 +1,16 @@
+body {
+    background-image: url("hackathonbackground.png");
+}
+
+IMG.displayed{
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+IMG.displayedUser{
+	display: block;
+	margin-left: 0;
+	margin-right: auto;
+	float: left;
+}
