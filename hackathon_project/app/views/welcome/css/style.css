@@ -16,3 +16,7 @@ table{
 td{
 	width: 240px;	
 }
+
+div.toggle{
+	text-align: center;
+}
