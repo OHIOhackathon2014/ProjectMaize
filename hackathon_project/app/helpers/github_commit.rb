@@ -42,4 +42,9 @@ class GithubCommit
       c
     end
   end
+
+  def self.generate_from_url(url)
+    parts = url.split('/').last 2
+    return generate_commits parts[0], parts[1]
+  end
 end
