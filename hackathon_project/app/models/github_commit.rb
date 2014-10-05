@@ -59,4 +59,13 @@ class GithubCommit
     parts = url.split('/').last 2
     return generate_commits parts[0], parts[1]
   end
+
+  def self.generate_names_hash(owner, repo_name)
+    cs = generate_commits owner, repo_name
+    names = cs.map{|c| c.name}.uniq
+    h = {}
+    names.each do |name|
+      h[name] = cs.select{|c| c.name == name}
+    end
+  end
 end
