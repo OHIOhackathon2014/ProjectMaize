@@ -9,6 +9,8 @@ class GithubCommit
   attr_accessor :url
   attr_accessor :json
   attr_accessor :date
+  attr_accessor :repo
+  attr_accessor :owner
 
   def generate_json!
     @json = JSON.parse(open(url).read)
@@ -43,6 +45,8 @@ class GithubCommit
         c.date_parse j['commit']['committer']['date']
         c.name = j['commit']['committer']['name']
         c.url  = j['url'] + "?access_token=#{TOKEN}"
+        c.repo = repo_name
+        c.owner = owner
         c.generate_json!
         c
       end
