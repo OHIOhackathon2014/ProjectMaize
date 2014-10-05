@@ -56,7 +56,7 @@ class GithubCommit
   end
 
   def self.generate_commits_url(owner, repo_name, start_date='')
-    if start_date.is_empty?
+    if start_date.empty?
       return "https://api.github.com/repos/#{owner}/#{repo_name}/commits?access_token=#{TOKEN}"
     else
       return "https://api.github.com/repos/#{owner}/#{repo_name}/commits?access_token=#{TOKEN}&since=#{start_date}"

@@ -29,7 +29,7 @@ class RepoController < ApplicationController
     @data = {} 
 
     cs.each do |c|
-      i = [c.changes, c.date]
+      i = [c.date, c.changes]
       if params[:user_group] 
         @data[c.name] ||= []
         @data[c.name] << i
