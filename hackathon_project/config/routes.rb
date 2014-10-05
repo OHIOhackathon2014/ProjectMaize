@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get 'graph/compare'
 
   #get 'graph/line_graph/:owner/:repo_name', to: 'graph#line_graph', via: post
-  match 'line_graph', to: 'graph#line_graph', via: :post
+  match 'index', to: 'graph#index', via: :post
   
   get 'graph/compare/:repos', to: 'graph#compare'
 

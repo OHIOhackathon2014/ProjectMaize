@@ -61,6 +61,8 @@ class GraphController < ApplicationController
       user_per_proj
     when "commit_total"
       user_total
+    when "compare"
+      compare
     else
       #problem
       puts "problem choosing user graph function"
@@ -96,6 +98,7 @@ class GraphController < ApplicationController
     # model needs functionality that creates a hash of arrays of commits (1 array = all commits of 1 contributor) 
     # keys of has is the name of the 
     # put in instance variable and pass along to view
+    @contributor_commits = GithubCommit.generate_names_hash
   end
   
   def repo_total
