@@ -6,12 +6,12 @@ Rails.application.routes.draw do
   get 'compare/:repos', to: 'compare#compare'
   
   
-  get 'org' to: 'org#index'
+  get 'org'
   
   match 'org/:org_name' => 'org#show' via: :post
 
 
-  get 'repo' to 'repo#index'
+  get 'repo'
 
   match 'repo/:repo_name' => 'repo#show' via: :post
 
