@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <head>
   <link rel="stylesheet" type="text/css" href="css/style.css">
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <script language="javascript"> 
     function toggle(showHideDiv, switchTextDiv) {
     var list = document.getElementsByClassName('toggle');
@@ -16,7 +17,7 @@
  		     }
 		     }
     function toggleRepoName(button){
-        var itemOne = document.getElementById('repo_name');
+        /*var itemOne = document.getElementById('repo_name');
         var itemTwo = document.getElementById('owner');
 
         itemTwo.style.display = "none";
@@ -25,7 +26,7 @@
           itemOne.style.display = "none";
         } else {
           itemOne.style.display = "block";
-        }
+        }*/
 
     }
 	</script>
@@ -42,6 +43,7 @@
 	  <div class="buttons"><a id="displayOrg" href="javascript:toggle('toggleOrg','displayOrg');toggleRepoName('displayRepo');"><%= image_tag "org.png" %></a></div>
     </div>
 
+
     <%= form_tag({controller: "graph", action: "index"}) do %>
     <div class="button_group" style="display: none">
       <%= label_tag :owner, "Owner of repository" %>
@@ -51,6 +53,9 @@
       <%= label_tag :repo_name, "Repository name" %>
       <%= text_field_tag :repo_name %>
     </div>
+
+
+
     <div id="toggleRepo" class="toggle" style="display: none">    
       <%= radio_button_tag(:repo, "add_sub") %>
       <%= label_tag(:repo, "Additions and Subtractions") %>
