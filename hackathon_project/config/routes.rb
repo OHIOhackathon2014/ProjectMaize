@@ -8,12 +8,12 @@ Rails.application.routes.draw do
   
   get 'org' to: 'org#index'
   
-  get 'org/:org_name' to: 'org#show' via: :post
+  match 'org/:org_name' => 'org#show' via: :post
 
 
-  get 'repo' to: 'repo#index'
+  get 'repo' to 'repo#index'
 
-  get 'repo/:repo_name' to: 'repo#show' via: :post
+  match 'repo/:repo_name' => 'repo#show' via: :post
 
 
   #resources :user
