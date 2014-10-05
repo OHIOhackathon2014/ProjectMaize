@@ -8,12 +8,12 @@ Rails.application.routes.draw do
   
   get 'org'
   
-  match 'org/:org_name' => 'org#show' via: :post
+  match 'org/:org_name' => 'org#show' via :post
 
 
   get 'repo'
 
-  match 'repo/:repo_name' => 'repo#show' via: :post
+  match 'repo/:repo_name' => 'repo#show' via :post
 
 
   #resources :user
