@@ -25,7 +25,7 @@ class GraphController < ApplicationController
 
 
     if @repo_option != nil then
-      choose_repo_growth
+      choose_repo_graph
     elsif @user_option != nil then
       choose_user_graph
     elsif @org_option != nil then
@@ -58,7 +58,7 @@ class GraphController < ApplicationController
   def choose_user_graph
     case @user_option
     when "commit_per_proj"
-      user_per_proj
+      owner_compare
     when "commit_total"
       user_total
     when "compare"
@@ -72,7 +72,7 @@ class GraphController < ApplicationController
   def choose_org_graph
     case @repo_option
     when "commit_per_proj"
-      org_per_proj
+      owner_compare
     when "commit_total"
       org_total
     else
@@ -82,7 +82,7 @@ class GraphController < ApplicationController
   end
         
 
-  #### controller actions ####
+  #### controller actions, has an associated view ####
 
   def repo_add_sub
     # one repository, additions and deletions over time
@@ -94,40 +94,41 @@ class GraphController < ApplicationController
 
   def repo_per_user 
     # one repository, one line per contributor - points are commits
-    cs = GithubCommit.generate_commits(@owner_name, @repo_name)
     # model needs functionality that creates a hash of arrays of commits (1 array = all commits of 1 contributor) 
     # keys of has is the name of the 
     # put in instance variable and pass along to view
-    @contributor_commits = GithubCommit.generate_names_hash
+    @contributor_commits = GithubCommit.generate_names_hash(@owner_name, @repo_name)
   end
   
   def repo_total
+    #one repository, total changes over time
     cs = GithubCommit.generate_commits(@owner_name, @repo_name)
-    
+    @changes = cs.map{|c| c.changes}
+    @dates = cs.map{|c| c.dates}
   end
-  
+
+  ## <<CHALLENGE PROBLEMS>> ##
   def user_total
+    #user's resposities, maps average commits over time
     cs = GithubCommit.generate_commits(@owner_name, @repo_name)
-    
-  end
-  
-  def user_per_proj
-    cs = GithubCommit.generate_commits(@owner_name, @repo_name)
+    @dates = cs.map{|c| c.dates}
   end
   
   def org_total
-    cs = GithubCommit.generate_commits(@owner_name, @repo_name)
+    #one organization, each point is a total of commits at that point in time
+    @repos = OwnerRepos.generate_owner_repo_commits(@owner_name)
+    #sum up all commits at the same time
+    @changes = @repos.map{|r| r.map{|c| c.changes}} 
+      
+    @dates = cs.map{|c| c.dates}
   end
+  ## /<<CHALLENGE PROBLEMS>> ##
   
-  def org_per_proj
-    cs = GithubCommit.generate_commits(@owner_name, @repo_name)
-  end
-
   def compare
     @repo_owners_names = params[:repos].split(';')
     @repos = @repo_owners_names.map{|s| s.split(':')}.map{|r| GithubCommit.generate_commits(r[0], r[1])}
   end
-
+  
   def owner_compare
     @names = OwnerRepos.generate_owner_repo_names(@owner_name)
     @repos = OwnerRepos.generate_owner_repo_commits(@owner_name)
