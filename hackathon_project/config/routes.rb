@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   get 'owner_compare/:owner', to: 'graph#owner_compare'
 
-  get 'compare', to: 'compare#index'
+  get '/compare'
 
   get 'compare/:repos', to: 'compare#compare'
   
@@ -17,6 +17,7 @@ Rails.application.routes.draw do
 
 
   #resources :user
+  resources :compare
   resources :repo
   resources :org
 
