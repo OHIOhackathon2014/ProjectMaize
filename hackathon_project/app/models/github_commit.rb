@@ -2,6 +2,7 @@ require 'open-uri'
 require 'json'
 
 TOKEN = 'ae8911808ca7162e61ab46bdc79bd7d2e3fe41b5' # this probably shouldn't be hardcoded, change this later
+MAX = 1000 # hard cap on lines of code counted
 
 class GithubCommit
   attr_accessor :name
@@ -14,15 +15,19 @@ class GithubCommit
   end
   
   def additions
-    @json['stats']['additions']
+    [@json['stats']['additions'], MAX].min
   end
   
   def deletions
-    @json['stats']['deletions']
+    [@json['stats']['deletions'], MAX].min
   end
   
   def total
-    @json['stats']['total']
+    [@json['stats']['total'], MAX].min
+  end
+
+  def changes
+    [@json['files'].map{|f| f['changes']}.reduce(:+), MAX].min
   end
   
   def date_parse(d)
@@ -31,15 +36,18 @@ class GithubCommit
   
   # Example: generate_commits('OHIOhackathon2014', 'ProjectMaize')
   def self.generate_commits(owner, repo_name)
-    url = generate_commits_url owner, repo_name
-    parsed_json = JSON.parse open(url).read
-    return parsed_json.map do |j|
-      c = self.new
-      c.date_parse j['commit']['committer']['date']
-      c.name = j['commit']['committer']['name']
-      c.url  = j['url'] + "?access_token=#{TOKEN}"
-      c.generate_json!
-      c
+    begin
+      url = generate_commits_url(owner, repo_name)
+      JSON.parse(open(url).read).map do |j|
+        c = self.new
+        c.date_parse j['commit']['committer']['date']
+        c.name = j['commit']['committer']['name']
+        c.url  = j['url'] + "?access_token=#{TOKEN}"
+        c.generate_json!
+        c
+      end
+    rescue OpenURI::HTTPError
+      return []
     end
   end
 
