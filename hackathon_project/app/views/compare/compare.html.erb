@@ -1,1 +1,4 @@
-<h2 class="title">Compare</h2>
+<h2 class="title"><%= "#{@owner_name} #{@repo_name}"%></h2>
+
+<%= javascript_include_tag "http://code.highcharts.com/highcharts.js", "chartkick" %>
+<%= line_chart @chart_data %> 
