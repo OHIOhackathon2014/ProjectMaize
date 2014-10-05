@@ -1,11 +1,22 @@
 Rails.application.routes.draw do
   get 'owner_compare/:owner', to: 'graph#owner_compare'
 
-  get 'compare'
+  get 'compare', to: 'compare#index'
 
   get 'compare/:repos', to: 'compare#compare'
+  
+  
+  get 'org' to: 'org#index'
+  
+  get 'org/:org_name' to: 'org#show' via: :post
 
-  resources :user
+
+  get 'repo' to: 'repo#index'
+
+  get 'repo/:repo_name' to: 'repo#show' via: :post
+
+
+  #resources :user
   resources :repo
   resources :org
 
