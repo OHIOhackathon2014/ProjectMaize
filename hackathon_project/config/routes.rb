@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'owner_compare/:owner', to: 'graph#owner_compare'
+    #get 'owner_compare/:owner', to: 'graph#owner_compare'
 
   get 'compare'
 
