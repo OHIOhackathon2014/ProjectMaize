@@ -1,7 +1,7 @@
 require 'open-uri'
 require 'json'
 
-TOKEN = 'ae8911808ca7162e61ab46bdc79bd7d2e3fe41b5' # this probably shouldn't be hardcoded, change this later
+TOKEN = 'a0896197c4eb46e6009d9ae5fdc6813f0c334b63' # this probably shouldn't be hardcoded, change this later
 MAX = 1000 # hard cap on lines of code counted
 
 class GithubCommit

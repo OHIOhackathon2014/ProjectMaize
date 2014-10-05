@@ -1,4 +1,4 @@
-require 'github_commit'
+#require 'github_commit'
 require 'open-uri'
 require 'json'
 
