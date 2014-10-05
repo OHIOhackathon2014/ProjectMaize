@@ -2,8 +2,6 @@ require 'chartkick'
 require 'github_commit'
 require 'owner_repos'
 
-LogarithmicBreakpoint = 1000
-
 class GraphController < ApplicationController
 
   #### select the graph type ####
@@ -108,6 +106,7 @@ class GraphController < ApplicationController
     # keys of has is the name of the 
     # put in instance variable and pass along to view
     @contributor_commits = GithubCommit.generate_names_hash(@owner_name, @repo_name)
+    @dates = GithubCommit.generate_commits(@owner_name, @repo_name).map{|c| c.date}
   end
   
   def repo_total
