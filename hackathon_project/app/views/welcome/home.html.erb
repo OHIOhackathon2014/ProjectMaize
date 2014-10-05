@@ -47,17 +47,17 @@
       
       <%= radio_button_tag(:repo, "per_user") %>
       <%= label_tag(:repo, "Commits per user") %>
+
+
+      <%= radio_button_tag(:repo, "compare") %>
+      <%= label_tag(:repo, "Compare multiple repositories") %>
     </div>
     <div id="toggleUser" class="toggle" style="display: none"><h1>peek-a-boo2</h1>
-      <%= radio_button_tag(:user, "per_proj") %>
-      <%= label_tag(:user, "Commits per project") %>
       
       <%= radio_button_tag(:user, "total") %>
       <%= label_tag(:user, "Total Commits") %>
     </div>
     <div id="toggleOrg" class="toggle" style="display: none"><h1>peek-a-boo3</h1>
-      <%= radio_button_tag(:org, "per_proj") %>
-      <%= label_tag(:org, "Commits per Project") %>
       
       <%= radio_button_tag(:org, "total") %>
       <%= label_tag(:org, "Total Commits") %>
