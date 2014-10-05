@@ -1,35 +1,35 @@
 Rails.application.routes.draw do
     #get 'owner_compare/:owner', to: 'graph#owner_compare'
 
-  get 'compare'
+#get 'compare'
 
-  get 'compare/:repos', to: 'compare#compare'
+# get 'compare/:repos', to: 'compare#compare'
   
   
-  get 'org'
+  # get 'org'
   
-  match 'org/:org_name' => 'org#show', via: :post
+  #match 'org/:org_name' => 'org#show', via: :post
 
 
-  get 'repo'
+#get 'repo'
 
-  match 'repo/:repo_name' => 'repo#show', via: :post
+# match 'repo/:repo_name' => 'repo#show', via: :post
 
 
   #resources :user
-  resources :compare
-  resources :repo
-  resources :org
+  # resources :compare
+  #resources :repo
+  #resources :org
 
   #get ':controller/:action/:owner/:repo_name'
-  get 'git_stuff/text/:owner/:repo_name', to: 'git_stuff#text'
-  get 'welcome/home'
+  # get 'git_stuff/text/:owner/:repo_name', to: 'git_stuff#text'
+  #get 'welcome/home'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'welcome#home'
+  #root 'welcome#home'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
