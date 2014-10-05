@@ -34,6 +34,9 @@ input{
 .text{
 	font-family: helvetica;
 	font-size: 14;
+	margin-left: auto;
+	margin-right: auto;
 	text-align: center;
+	color: #BDAC3D;
 	width: 700px;
 }
