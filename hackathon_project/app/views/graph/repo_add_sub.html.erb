@@ -1,0 +1,4 @@
+<%= javascript_include_tag "http://code.highcharts.com/highcharts.js", "chartkick" %>
+<%= line_chart [{name: 'Additions', data: @dates.zip(@addtions)},
+                {name: 'Deletions', data: @dates.zip(@deletions)}]
+%>
