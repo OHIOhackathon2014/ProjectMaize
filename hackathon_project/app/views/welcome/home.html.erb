@@ -27,7 +27,7 @@
 	  <div class="buttons"><a id="displayOrg" href="javascript:toggle('toggleOrg','displayOrg');"><%= image_tag "org.png" %></a></div>
     </div>
 
-    <%= form_tag({controller: "graph", action: "line_graph"}) do %>
+    <%= form_tag({controller: "graph", action: "index"}) do %>
     <div class="button_group">
       <%= label_tag :owner, "Owner of repository" %>
       <%= text_field_tag :owner %>
