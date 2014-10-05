@@ -19,12 +19,12 @@
         var itemOne = document.getElementById('repo_name');
         var itemTwo = document.getElementById('owner');
 
-        itemTwo.style.display = "block";
+        itemTwo.style.display = "none";
 
         if(button == document.getElementById('displayRepo')){
-          itemOne.style.display = "block";
-        } else {
           itemOne.style.display = "none";
+        } else {
+          itemOne.style.display = "block";
         }
 
     }
@@ -43,11 +43,11 @@
     </div>
 
     <%= form_tag({controller: "graph", action: "index"}) do %>
-    <div class="button_group" style="display: none">
+    <div class="button_group" style="display: block">
       <%= label_tag :owner, "Owner of repository" %>
       <%= text_field_tag :owner %>
       </div>
-      <div class="button_group" style="display: none">
+      <div class="button_group" style="display: block">
       <%= label_tag :repo_name, "Repository name" %>
       <%= text_field_tag :repo_name %>
     </div>
