@@ -12,6 +12,10 @@ a:link, a:visited, a:active{
 	text-decoration: none;
 }
 
+#owner{
+	color:blue;
+}
+
 .header{
 	margin-top: 30px;
 }
@@ -36,11 +40,10 @@ input{
 }
 
 .text{
-	font-family: helvetica;
+	font-family: Futura;
 	font-size: 16;
 	margin-left: auto;
 	margin-right: auto;
-	text-align: center;
 	color: #BDAC3D;
 	width: 700px;
 }
