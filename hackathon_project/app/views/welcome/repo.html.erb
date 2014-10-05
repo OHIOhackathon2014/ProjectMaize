@@ -1,9 +1,27 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <head>
-  <link rel="stylesheet" type="text/css" href="css/style.css">
+ <style>
+	p {
+		color: blue;
+	}
+
+	</style>
 </head>
 <html>
 <body>
+	<div class = "rubyCode">
+
+    <%= form_tag({controller: "graph", action: "index"}) do %>
+    <div class="button_group" style="display: none">
+      <%= label_tag :owner, "Owner of repository" %>
+      <div class="form-group"
+      <%= text_field_tag :owner %>
+      </div>
+      <div class="button_group" style="display: none">
+      <%= label_tag :repo_name, "Repository name" %>
+      <%= text_field_tag :repo_name %>
+    </div>
+</div>
 	
 </body>
 </html>
