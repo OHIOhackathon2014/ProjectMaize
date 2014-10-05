@@ -24,13 +24,16 @@ class RepoController < ApplicationController
   end
 
 
-  def show  
-     cs = GithubCommit.generate_commits(@owner_name, @repo_name)
+  def show 
+    @owner_name = params[:id]
+    @repo_name = params[:repo]
+ 
+    cs = GithubCommit.generate_commits(@owner_name, @repo_name)
     @data = {} 
 
     cs.each do |c|
       i = [c.date, c.changes]
-      if params[:user_group] 
+      if params[:user_group]
         @data[c.name] ||= []
         @data[c.name] << i
       else
