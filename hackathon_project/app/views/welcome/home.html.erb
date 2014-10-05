@@ -43,15 +43,15 @@
     </div>
 
     <%= form_tag({controller: "graph", action: "index"}) do %>
-    <div class="button_group" style="display: block">
+    <div class="button_group" style="display: none">
       <%= label_tag :owner, "Owner of repository" %>
       <%= text_field_tag :owner %>
       </div>
-      <div class="button_group" style="display: block">
+      <div class="button_group" style="display: none">
       <%= label_tag :repo_name, "Repository name" %>
       <%= text_field_tag :repo_name %>
     </div>
-    <div id="toggleRepo" class="toggle" style="display: none"><h1>peek-a-boo1</h1>     
+    <div id="toggleRepo" class="toggle" style="display: none">    
       <%= radio_button_tag(:repo, "add_sub") %>
       <%= label_tag(:repo, "Additions and Subtractions") %>
       
@@ -66,12 +66,12 @@
       <%= radio_button_tag(:repo, "compare") %>
       <%= label_tag(:repo, "Compare multiple repositories") %>
     </div>
-    <div id="toggleUser" class="toggle" style="display: none"><h1>peek-a-boo2</h1>
+    <div id="toggleUser" class="toggle" style="display: none">
       
       <%= radio_button_tag(:user, "total") %>
       <%= label_tag(:user, "Total Commits") %>
     </div>
-    <div id="toggleOrg" class="toggle" style="display: none"><h1>peek-a-boo3</h1>
+    <div id="toggleOrg" class="toggle" style="display: none">
       
       <%= radio_button_tag(:org, "total") %>
       <%= label_tag(:org, "Total Commits") %>
