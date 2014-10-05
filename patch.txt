@@ -1,0 +1,510 @@
+diff --git a/Gemfile.lock b/Gemfile.lock
+index bbc3d6b..095bcfb 100644
+--- a/Gemfile.lock
++++ b/Gemfile.lock
+@@ -27,43 +27,17 @@ GEM
+       minitest (~> 5.1)
+       thread_safe (~> 0.1)
+       tzinfo (~> 1.1)
+-    addressable (2.3.6)
+     arel (5.0.1.20140414130214)
+     builder (3.2.2)
+-    descendants_tracker (0.0.4)
+-      thread_safe (~> 0.3, >= 0.3.1)
+     erubis (2.7.0)
+-    faraday (0.9.0)
+-      multipart-post (>= 1.2, < 3)
+-    github_api (0.12.1)
+-      addressable (~> 2.3)
+-      descendants_tracker (~> 0.0.4)
+-      faraday (~> 0.8, < 0.10)
+-      hashie (>= 3.2)
+-      multi_json (>= 1.7.5, < 2.0)
+-      nokogiri (~> 1.6.3)
+-      oauth2
+-    hashie (3.3.1)
+     hike (1.2.3)
+     i18n (0.6.11)
+     json (1.8.1)
+-    jwt (1.0.0)
+     mail (2.6.1)
+       mime-types (>= 1.16, < 3)
+     mime-types (2.3)
+-    mini_portile (0.6.0)
+     minitest (5.4.2)
+     multi_json (1.10.1)
+-    multi_xml (0.5.5)
+-    multipart-post (2.0.0)
+-    nokogiri (1.6.3.1)
+-      mini_portile (= 0.6.0)
+-    oauth2 (1.0.0)
+-      faraday (>= 0.8, < 0.10)
+-      jwt (~> 1.0)
+-      multi_json (~> 1.3)
+-      multi_xml (~> 0.5)
+-      rack (~> 1.2)
+     rack (1.5.2)
+     rack-test (0.6.2)
+       rack (>= 1.0)
+@@ -102,5 +76,4 @@ PLATFORMS
+   ruby
+ 
+ DEPENDENCIES
+-  github_api
+   rails
+diff --git a/hackathon_project/app/assets/javascripts/org.js.coffee b/hackathon_project/app/assets/javascripts/org.js.coffee
+new file mode 100644
+index 0000000..24f83d1
+--- /dev/null
++++ b/hackathon_project/app/assets/javascripts/org.js.coffee
+@@ -0,0 +1,3 @@
++# Place all the behaviors and hooks related to the matching controller here.
++# All this logic will automatically be available in application.js.
++# You can use CoffeeScript in this file: http://coffeescript.org/
+diff --git a/hackathon_project/app/assets/javascripts/repo.js.coffee b/hackathon_project/app/assets/javascripts/repo.js.coffee
+new file mode 100644
+index 0000000..24f83d1
+--- /dev/null
++++ b/hackathon_project/app/assets/javascripts/repo.js.coffee
+@@ -0,0 +1,3 @@
++# Place all the behaviors and hooks related to the matching controller here.
++# All this logic will automatically be available in application.js.
++# You can use CoffeeScript in this file: http://coffeescript.org/
+diff --git a/hackathon_project/app/assets/javascripts/user.js.coffee b/hackathon_project/app/assets/javascripts/user.js.coffee
+new file mode 100644
+index 0000000..24f83d1
+--- /dev/null
++++ b/hackathon_project/app/assets/javascripts/user.js.coffee
+@@ -0,0 +1,3 @@
++# Place all the behaviors and hooks related to the matching controller here.
++# All this logic will automatically be available in application.js.
++# You can use CoffeeScript in this file: http://coffeescript.org/
+diff --git a/hackathon_project/app/assets/stylesheets/org.css.scss b/hackathon_project/app/assets/stylesheets/org.css.scss
+new file mode 100644
+index 0000000..794c04a
+--- /dev/null
++++ b/hackathon_project/app/assets/stylesheets/org.css.scss
+@@ -0,0 +1,3 @@
++// Place all the styles related to the org controller here.
++// They will automatically be included in application.css.
++// You can use Sass (SCSS) here: http://sass-lang.com/
+diff --git a/hackathon_project/app/assets/stylesheets/repo.css.scss b/hackathon_project/app/assets/stylesheets/repo.css.scss
+new file mode 100644
+index 0000000..e6b52b1
+--- /dev/null
++++ b/hackathon_project/app/assets/stylesheets/repo.css.scss
+@@ -0,0 +1,3 @@
++// Place all the styles related to the repo controller here.
++// They will automatically be included in application.css.
++// You can use Sass (SCSS) here: http://sass-lang.com/
+diff --git a/hackathon_project/app/assets/stylesheets/user.css.scss b/hackathon_project/app/assets/stylesheets/user.css.scss
+new file mode 100644
+index 0000000..7c5eca9
+--- /dev/null
++++ b/hackathon_project/app/assets/stylesheets/user.css.scss
+@@ -0,0 +1,3 @@
++// Place all the styles related to the user controller here.
++// They will automatically be included in application.css.
++// You can use Sass (SCSS) here: http://sass-lang.com/
+diff --git a/hackathon_project/app/controllers/graph_controller.rb b/hackathon_project/app/controllers/graph_controller.rb
+index e5033d8..03fd39c 100644
+--- a/hackathon_project/app/controllers/graph_controller.rb
++++ b/hackathon_project/app/controllers/graph_controller.rb
+@@ -1,34 +1,13 @@
+-require 'chartkick'
+-require 'github_commit'
+-require 'owner_repos'
+-
+ class GraphController < ApplicationController
++    require 'chartkick'
++    require 'github_commit'
++    require 'owner_repos'
+ 
+-  #### select the graph type ####
+   def index
+-    @owner_name = params[:owner]
+-    @repo_name = params[:repo_name]
+-
+-    @repo_option = params[:repo]
+-    @user_option = params[:user]
+-    @org_option = params[:org]
+-
+-
+-    if @repo_option != nil then
+-      redirect_to :repo_view
+-    elsif @user_option != nil then
+-      redirect_to :user_view
+-    elsif @org_option != nil then
+-      redirect_to :org_view
+-    else
+-      #issue
+-      puts "problem choosing radio button"
+-    end
+   end
+ 
+-
+   def repo_view
+-    case @repo_option
++    case params[:repo_option]
+     when "add_sub"
+       # one repository, additions and deletions over time
+       cs = GithubCommit.generate_commits(@owner_name, @repo_name)
+@@ -37,8 +16,8 @@ class GraphController < ApplicationController
+       @dates  = cs.map{|c| c.date}
+     when "commit_per_user"
+       # one repository, one line per contributor - points are commits
+-      # model needs functionality that creates a hash of arrays of commits (1 array = all commits of 1 contributor) 
+-      # keys of has is the name of the 
++      # model needs functionality that creates a hash of arrays of commits (1 array = all commits of 1 contributor)
++      # keys of has is the name of the
+       # put in instance variable and pass along to view
+       @contributor_commits = GithubCommit.generate_names_hash(@owner_name, @repo_name)
+     when "total"
+@@ -53,6 +32,7 @@ class GraphController < ApplicationController
+       #problem
+       puts "problem choosing repository graph function"
+     end
++    render text: "foo"
+   end
+ 
+   def user_view
+@@ -62,7 +42,7 @@ class GraphController < ApplicationController
+   end
+ 
+ 
+-  #### call the exact graph option based on type #### 
++  #### call the exact graph option based on type ####
+ 
+ 
+   def choose_user_graph
+@@ -88,7 +68,7 @@ class GraphController < ApplicationController
+       puts "problem choosing organization graph function"
+     end
+   end
+-        
++
+ 
+   #### controller actions, has an associated view ####
+ 
+@@ -100,15 +80,15 @@ class GraphController < ApplicationController
+     @dates  = cs.map{|c| c.date}
+   end
+ 
+-  def repo_per_user 
++  def repo_per_user
+     # one repository, one line per contributor - points are commits
+-    # model needs functionality that creates a hash of arrays of commits (1 array = all commits of 1 contributor) 
+-    # keys of has is the name of the 
++    # model needs functionality that creates a hash of arrays of commits (1 array = all commits of 1 contributor)
++    # keys of has is the name of the
+     # put in instance variable and pass along to view
+     @contributor_commits = GithubCommit.generate_names_hash(@owner_name, @repo_name)
+     @dates = GithubCommit.generate_commits(@owner_name, @repo_name).map{|c| c.date}
+   end
+-  
++
+   def repo_total
+     #one repository, total changes over time
+     cs = GithubCommit.generate_commits(@owner_name, @repo_name)
+@@ -118,26 +98,23 @@ class GraphController < ApplicationController
+ 
+   ## <<CHALLENGE PROBLEMS>> ##
+   def user_total
+-    #user's resposities, maps average commits over time
+-    cs = GithubCommit.generate_commits(@owner_name, @repo_name)
+-    @dates = cs.map{|c| c.dates}
+   end
+-  
++
+   def org_total
+     #one organization, each point is a total of commits at that point in time
+     @repos = OwnerRepos.generate_owner_repo_commits(@owner_name)
+     #sum up all commits at the same time
+-    @changes = @repos.map{|r| r.map{|c| c.changes}} 
+-      
++    @changes = @repos.map{|r| r.map{|c| c.changes}}
++
+     @dates = cs.map{|c| c.dates}
+   end
+   ## /<<CHALLENGE PROBLEMS>> ##
+-  
++
+   def compare
+     @repo_owners_names = params[:repos].split(';')
+     @repos = @repo_owners_names.map{|s| s.split(':')}.map{|r| GithubCommit.generate_commits(r[0], r[1])}
+   end
+-  
++
+   def owner_compare
+     @names = OwnerRepos.generate_owner_repo_names(@owner_name)
+     @repos = OwnerRepos.generate_owner_repo_commits(@owner_name)
+diff --git a/hackathon_project/app/controllers/org_controller.rb b/hackathon_project/app/controllers/org_controller.rb
+new file mode 100644
+index 0000000..7d8f245
+--- /dev/null
++++ b/hackathon_project/app/controllers/org_controller.rb
+@@ -0,0 +1,10 @@
++class OrgController < ApplicationController
++  def index
++  end
++
++  def show
++    @org_name = params[:id]
++    repos = OwnerRepos.generate_owner_repo_commits(@owner_name)
++    render json: repos
++  end
++end
+diff --git a/hackathon_project/app/controllers/repo_controller.rb b/hackathon_project/app/controllers/repo_controller.rb
+new file mode 100644
+index 0000000..49fc02d
+--- /dev/null
++++ b/hackathon_project/app/controllers/repo_controller.rb
+@@ -0,0 +1,13 @@
++class RepoController < ApplicationController
++  def compare
++  end
++
++  def additions
++  end
++
++  def commits
++  end
++
++  def commits_by_user
++  end
++end
+diff --git a/hackathon_project/app/controllers/user_controller.rb b/hackathon_project/app/controllers/user_controller.rb
+new file mode 100644
+index 0000000..1e1aee7
+--- /dev/null
++++ b/hackathon_project/app/controllers/user_controller.rb
+@@ -0,0 +1,12 @@
++class UserController < ApplicationController
++
++  def index
++  end
++
++  def show
++    @owner_name = params[:id]
++    repos = OwnerRepos.generate_owner_repo_commits(@owner_name)
++    render json: repos
++  end
++
++end
+diff --git a/hackathon_project/app/helpers/org_helper.rb b/hackathon_project/app/helpers/org_helper.rb
+new file mode 100644
+index 0000000..e956507
+--- /dev/null
++++ b/hackathon_project/app/helpers/org_helper.rb
+@@ -0,0 +1,2 @@
++module OrgHelper
++end
+diff --git a/hackathon_project/app/helpers/repo_helper.rb b/hackathon_project/app/helpers/repo_helper.rb
+new file mode 100644
+index 0000000..9a00efc
+--- /dev/null
++++ b/hackathon_project/app/helpers/repo_helper.rb
+@@ -0,0 +1,2 @@
++module RepoHelper
++end
+diff --git a/hackathon_project/app/helpers/user_helper.rb b/hackathon_project/app/helpers/user_helper.rb
+new file mode 100644
+index 0000000..0147c3f
+--- /dev/null
++++ b/hackathon_project/app/helpers/user_helper.rb
+@@ -0,0 +1,2 @@
++module UserHelper
++end
+diff --git a/hackathon_project/app/views/graph/index.html.erb b/hackathon_project/app/views/graph/index.html.erb
+new file mode 100644
+index 0000000..8b13789
+--- /dev/null
++++ b/hackathon_project/app/views/graph/index.html.erb
+@@ -0,0 +1 @@
++
+diff --git a/hackathon_project/app/views/welcome/home.html.erb b/hackathon_project/app/views/welcome/home.html.erb
+index 58e49c2..11c2607 100644
+--- a/hackathon_project/app/views/welcome/home.html.erb
++++ b/hackathon_project/app/views/welcome/home.html.erb
+@@ -1,35 +1,8 @@
+ <!DOCTYPE html>
+ <head>
+   <link rel="stylesheet" type="text/css" href="css/style.css">
+-  <script language="javascript"> 
+-    function toggle(showHideDiv, switchTextDiv) {
+-    var list = document.getElementsByClassName('toggle');
+-    
+-    for ( i = 0; i < list.length; i++ ) {
+-		     list.item(i).style.display = "none";
+-		     }
+-		     
+-		     var ele = document.getElementById(showHideDiv);
+-		     var text = document.getElementById(switchTextDiv);
+-		     if(ele.style.display == "none") {
+-  		     ele.style.display = "block";
+- 		     }
+-		     }
+-    function toggleRepoName(button){
+-        var itemOne = document.getElementById('repo_name');
+-        var itemTwo = document.getElementById('owner');
+-
+-        itemTwo.style.display = "none";
+-
+-        if(button == document.getElementById('displayRepo')){
+-          itemOne.style.display = "none";
+-        } else {
+-          itemOne.style.display = "block";
+-        }
+-
+-    }
+-	</script>
+ </head>
++
+ <html>
+   <body>
+     <div class="header"><%= image_tag "header.png" %></div>
+@@ -37,51 +10,10 @@
+     <div class="text"><p>Maize is tool for visualizing development of public projects of all sizes that use the GitHub Version Control system.  If you are anyone from a small scale developer, commiting to one or a few repositories or a large development organization, tracking development amonng a large number of repos and developers, Maize is right for you!<br /><br />If you want to view commits for an individual repository, click on repo!  Want to see your or someone else's commits to a number of repositories, choose User!  Or if your trying to track a large number of repositories under one organization, choose Organization!</p></div>
+ 
+     <div class="button_group">
+- 	  <div class="buttons"><a id="displayRepo" href="javascript:toggle('toggleRepo','displayRepo');toggleRepoName('displayRepo');"><%= image_tag "repo.png" %></a></div>
+-      <div class="buttons"><a id="displayUser" href="javascript:toggle('toggleUser','displayUser');toggleRepoName('displayRepo');"><%= image_tag "user.png" %></a></div>
+-	  <div class="buttons"><a id="displayOrg" href="javascript:toggle('toggleOrg','displayOrg');toggleRepoName('displayRepo');"><%= image_tag "org.png" %></a></div>
+-    </div>
+-
+-    <%= form_tag({controller: "graph", action: "index"}) do %>
+-    <div class="button_group" style="display: none">
+-      <%= label_tag :owner, "Owner of repository" %>
+-      <%= text_field_tag :owner %>
+-      </div>
+-      <div class="button_group" style="display: none">
+-      <%= label_tag :repo_name, "Repository name" %>
+-      <%= text_field_tag :repo_name %>
+-    </div>
+-    <div id="toggleRepo" class="toggle" style="display: none">    
+-      <%= radio_button_tag(:repo, "add_sub") %>
+-      <%= label_tag(:repo, "Additions and Subtractions") %>
+-      
+-      <%= radio_button_tag(:repo, "total") %>
+-      <%= label_tag(:repo, "Total Commits") %>
+-      
+-      
+-      <%= radio_button_tag(:repo, "per_user") %>
+-      <%= label_tag(:repo, "Commits per user") %>
+-
+-
+-      <%= radio_button_tag(:repo, "compare") %>
+-      <%= label_tag(:repo, "Compare multiple repositories") %>
+-    </div>
+-    <div id="toggleUser" class="toggle" style="display: none">
+-      
+-      <%= radio_button_tag(:user, "total") %>
+-      <%= label_tag(:user, "Total Commits") %>
+-    </div>
+-    <div id="toggleOrg" class="toggle" style="display: none">
+-      
+-      <%= radio_button_tag(:org, "total") %>
+-      <%= label_tag(:org, "Total Commits") %>
+-    </div>
+-    <div class="button_group">
+-    <%= submit_tag "submit", class: "submit_button" %>
++        <div class="buttons"><a id="displayRepo" href=""><%= image_tag "repo.png" %></a></div>
++        <div class="buttons"><a id="displayUser" href=""><%= image_tag "user.png" %></a></div>
++        <div class="buttons"><a id="displayOrg" href=""><%= image_tag "org.png" %></a></div>
+     </div>
+ 
+-    <div class="graph_window"></div>
+-    <% end %>
+   </body>
+-</html> 
+-
++</html>
+diff --git a/hackathon_project/config/routes.rb b/hackathon_project/config/routes.rb
+index a8427d5..a48d175 100644
+--- a/hackathon_project/config/routes.rb
++++ b/hackathon_project/config/routes.rb
+@@ -3,11 +3,11 @@ Rails.application.routes.draw do
+ 
+   get 'graph/compare'
+ 
+-  #get 'graph/line_graph/:owner/:repo_name', to: 'graph#line_graph', via: post
+-  match 'index', to: 'graph#index', via: :post
+-  
+   get 'graph/compare/:repos', to: 'graph#compare'
+-  get 'graph/repo_view/'=> 'graph#repo_view', as: "repo_view"
++
++  resources :user
++  resources :repo
++  resources :org
+ 
+   #get ':controller/:action/:owner/:repo_name'
+   get 'git_stuff/text/:owner/:repo_name', to: 'git_stuff#text'
+diff --git a/hackathon_project/test/controllers/org_controller_test.rb b/hackathon_project/test/controllers/org_controller_test.rb
+new file mode 100644
+index 0000000..8543886
+--- /dev/null
++++ b/hackathon_project/test/controllers/org_controller_test.rb
+@@ -0,0 +1,7 @@
++require 'test_helper'
++
++class OrgControllerTest < ActionController::TestCase
++  # test "the truth" do
++  #   assert true
++  # end
++end
+diff --git a/hackathon_project/test/controllers/repo_controller_test.rb b/hackathon_project/test/controllers/repo_controller_test.rb
+new file mode 100644
+index 0000000..049fe05
+--- /dev/null
++++ b/hackathon_project/test/controllers/repo_controller_test.rb
+@@ -0,0 +1,7 @@
++require 'test_helper'
++
++class RepoControllerTest < ActionController::TestCase
++  # test "the truth" do
++  #   assert true
++  # end
++end
+diff --git a/hackathon_project/test/controllers/user_controller_test.rb b/hackathon_project/test/controllers/user_controller_test.rb
+new file mode 100644
+index 0000000..674468e
+--- /dev/null
++++ b/hackathon_project/test/controllers/user_controller_test.rb
+@@ -0,0 +1,7 @@
++require 'test_helper'
++
++class UserControllerTest < ActionController::TestCase
++  # test "the truth" do
++  #   assert true
++  # end
++end
+diff --git a/hackathon_project/test/helpers/org_helper_test.rb b/hackathon_project/test/helpers/org_helper_test.rb
+new file mode 100644
+index 0000000..b4c11d7
+--- /dev/null
++++ b/hackathon_project/test/helpers/org_helper_test.rb
+@@ -0,0 +1,4 @@
++require 'test_helper'
++
++class OrgHelperTest < ActionView::TestCase
++end
+diff --git a/hackathon_project/test/helpers/repo_helper_test.rb b/hackathon_project/test/helpers/repo_helper_test.rb
+new file mode 100644
+index 0000000..f6e4853
+--- /dev/null
++++ b/hackathon_project/test/helpers/repo_helper_test.rb
+@@ -0,0 +1,4 @@
++require 'test_helper'
++
++class RepoHelperTest < ActionView::TestCase
++end
+diff --git a/hackathon_project/test/helpers/user_helper_test.rb b/hackathon_project/test/helpers/user_helper_test.rb
+new file mode 100644
+index 0000000..ad44a53
+--- /dev/null
++++ b/hackathon_project/test/helpers/user_helper_test.rb
+@@ -0,0 +1,4 @@
++require 'test_helper'
++
++class UserHelperTest < ActionView::TestCase
++end

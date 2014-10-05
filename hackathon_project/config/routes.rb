@@ -3,11 +3,11 @@ Rails.application.routes.draw do
 
   get 'graph/compare'
 
-  #get 'graph/line_graph/:owner/:repo_name', to: 'graph#line_graph', via: post
-  match 'index', to: 'graph#index', via: :post
-  
   get 'graph/compare/:repos', to: 'graph#compare'
-  get 'graph/repo_view/'=> 'graph#repo_view', as: "repo_view"
+
+  resources :user
+  resources :repo
+  resources :org
 
   #get ':controller/:action/:owner/:repo_name'
   get 'git_stuff/text/:owner/:repo_name', to: 'git_stuff#text'

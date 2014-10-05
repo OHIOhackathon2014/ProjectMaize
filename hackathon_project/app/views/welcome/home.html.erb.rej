@@ -1,0 +1,95 @@
+--- hackathon_project/app/views/welcome/home.html.erb
++++ hackathon_project/app/views/welcome/home.html.erb
+@@ -1,35 +1,8 @@
+ <!DOCTYPE html>
+ <head>
+   <link rel="stylesheet" type="text/css" href="css/style.css">
+-  <script language="javascript"> 
+-    function toggle(showHideDiv, switchTextDiv) {
+-    var list = document.getElementsByClassName('toggle');
+-    
+-    for ( i = 0; i < list.length; i++ ) {
+-		     list.item(i).style.display = "none";
+-		     }
+-		     
+-		     var ele = document.getElementById(showHideDiv);
+-		     var text = document.getElementById(switchTextDiv);
+-		     if(ele.style.display == "none") {
+-  		     ele.style.display = "block";
+- 		     }
+-		     }
+-    function toggleRepoName(button){
+-        var itemOne = document.getElementById('repo_name');
+-        var itemTwo = document.getElementById('owner');
+-
+-        itemTwo.style.display = "none";
+-
+-        if(button == document.getElementById('displayRepo')){
+-          itemOne.style.display = "none";
+-        } else {
+-          itemOne.style.display = "block";
+-        }
+-
+-    }
+-	</script>
+ </head>
++
+ <html>
+   <body>
+     <div class="header"><%= image_tag "header.png" %></div>
+@@ -37,51 +10,10 @@
+     <div class="text"><p>Maize is tool for visualizing development of public projects of all sizes that use the GitHub Version Control system.  If you are anyone from a small scale developer, commiting to one or a few repositories or a large development organization, tracking development amonng a large number of repos and developers, Maize is right for you!<br /><br />If you want to view commits for an individual repository, click on repo!  Want to see your or someone else's commits to a number of repositories, choose User!  Or if your trying to track a large number of repositories under one organization, choose Organization!</p></div>
+ 
+     <div class="button_group">
+- 	  <div class="buttons"><a id="displayRepo" href="javascript:toggle('toggleRepo','displayRepo');toggleRepoName('displayRepo');"><%= image_tag "repo.png" %></a></div>
+-      <div class="buttons"><a id="displayUser" href="javascript:toggle('toggleUser','displayUser');toggleRepoName('displayRepo');"><%= image_tag "user.png" %></a></div>
+-	  <div class="buttons"><a id="displayOrg" href="javascript:toggle('toggleOrg','displayOrg');toggleRepoName('displayRepo');"><%= image_tag "org.png" %></a></div>
+-    </div>
+-
+-    <%= form_tag({controller: "graph", action: "index"}) do %>
+-    <div class="button_group" style="display: none">
+-      <%= label_tag :owner, "Owner of repository" %>
+-      <%= text_field_tag :owner %>
+-      </div>
+-      <div class="button_group" style="display: none">
+-      <%= label_tag :repo_name, "Repository name" %>
+-      <%= text_field_tag :repo_name %>
+-    </div>
+-    <div id="toggleRepo" class="toggle" style="display: none">    
+-      <%= radio_button_tag(:repo, "add_sub") %>
+-      <%= label_tag(:repo, "Additions and Subtractions") %>
+-      
+-      <%= radio_button_tag(:repo, "total") %>
+-      <%= label_tag(:repo, "Total Commits") %>
+-      
+-      
+-      <%= radio_button_tag(:repo, "per_user") %>
+-      <%= label_tag(:repo, "Commits per user") %>
+-
+-
+-      <%= radio_button_tag(:repo, "compare") %>
+-      <%= label_tag(:repo, "Compare multiple repositories") %>
+-    </div>
+-    <div id="toggleUser" class="toggle" style="display: none">
+-      
+-      <%= radio_button_tag(:user, "total") %>
+-      <%= label_tag(:user, "Total Commits") %>
+-    </div>
+-    <div id="toggleOrg" class="toggle" style="display: none">
+-      
+-      <%= radio_button_tag(:org, "total") %>
+-      <%= label_tag(:org, "Total Commits") %>
+-    </div>
+-    <div class="button_group">
+-    <%= submit_tag "submit", class: "submit_button" %>
++        <div class="buttons"><a id="displayRepo" href=""><%= image_tag "repo.png" %></a></div>
++        <div class="buttons"><a id="displayUser" href=""><%= image_tag "user.png" %></a></div>
++        <div class="buttons"><a id="displayOrg" href=""><%= image_tag "org.png" %></a></div>
+     </div>
+ 
+-    <div class="graph_window"></div>
+-    <% end %>
+   </body>
+-</html> 
+-
++</html>
