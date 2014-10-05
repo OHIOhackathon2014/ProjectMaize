@@ -16,9 +16,14 @@ a:link, a:visited, a:active{
 	color:blue;
 }
 
+#highcharts-background{
+	background-color: red;
+}
+
 .header{
 	margin-top: 30px;
 }
+
 
 .buttons{
 	float: left;
