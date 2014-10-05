@@ -1,7 +1,6 @@
 <h1><%= @repo_owners_names.join " vs " %></h1>
 <%= javascript_include_tag "http://code.highcharts.com/highcharts.js", "chartkick" %>
-<%= line_chart (@repos.map {|r|
-      max = r.map{|c| c.total.to_i}.max
-      portion_maxes = r.map{|c| c.total.to_f/max}
-      {name: @repo_owners_names[@repos.index(r)], data: r.map{|c| c.date}.zip(portion_maxes)}})
+<%= line_chart @repos.map {|r|
+      {name: @repo_owners_names[@repos.index(r)], data: r.map{|c|
+       c.date}.zip(r.map{|c| c.changes})}}
 %>

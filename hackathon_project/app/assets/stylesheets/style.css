@@ -8,6 +8,10 @@ img{
 	margin-right: auto;
 }
 
+a:link, a:visited, a:active{
+	text-decoration: none;
+}
+
 .header{
 	margin-top: 30px;
 }
@@ -29,4 +33,14 @@ input{
 
 .toggle{
 	text-align: center;
+}
+
+.text{
+	font-family: helvetica;
+	font-size: 16;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	color: #BDAC3D;
+	width: 700px;
 }

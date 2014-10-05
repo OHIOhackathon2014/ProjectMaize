@@ -21,6 +21,8 @@
   <body>
     <div class="header"><%= image_tag "header.png" %></div>
 
+    <div class="text"><p>Maize is tool for visualizing development of public projects of all sizes that use the GitHub Version Control system.  If you are anyone from a small scale developer, commiting to one or a few repositories or a large development organization, tracking development amonng a large number of repos and developers, Maize is right for you!<br /><br />If you want to view commits for an individual repository, click on repo!  Want to see your or someone else's commits to a number of repositories, choose User!  Or if your trying to track a large number of repositories under one organization, choose Organization!</p></div>
+
     <div class="button_group">
  	  <div class="buttons"><a id="displayRepo" href="javascript:toggle('toggleRepo','displayRepo');"><%= image_tag "repo.png" %></a></div>
       <div class="buttons"><a id="displayUser" href="javascript:toggle('toggleUser','displayUser');"><%= image_tag "user.png" %></a></div>
@@ -63,6 +65,8 @@
     <div class="button_group">
     <%= submit_tag "submit", class: "submit_button" %>
     </div>
+
+    <div class="graph_window"></div>
     <% end %>
   </body>
 </html> 
