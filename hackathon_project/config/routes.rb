@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   match 'index', to: 'graph#index', via: :post
   
   get 'graph/compare/:repos', to: 'graph#compare'
+  get 'graph/repo_view/'=> 'graph#repo_view', as: "repo_view"
 
   #get ':controller/:action/:owner/:repo_name'
   get 'git_stuff/text/:owner/:repo_name', to: 'git_stuff#text'
