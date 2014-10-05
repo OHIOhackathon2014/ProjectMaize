@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
-  get 'graph/owner_compare/:owner', to: 'graph#owner_compare'
+  get 'owner_compare/:owner', to: 'graph#owner_compare'
 
-  get 'graph/compare'
+  get 'compare'
 
-  get 'graph/compare/:repos', to: 'graph#compare'
+  get 'compare/:repos', to: 'compare#compare'
 
   resources :user
   resources :repo
