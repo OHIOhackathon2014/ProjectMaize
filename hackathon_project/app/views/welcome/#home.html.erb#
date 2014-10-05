@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<head>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <script language="javascript"> 
+    function toggle(showHideDiv, switchTextDiv) {
+    var list = document.getElementsByClassName('toggle');
+    
+    for ( i = 0; i < list.length; i++ ) {
+		     list.item(i).style.display = "none";
+		     }
+		     
+		     var ele = document.getElementById(showHideDiv);
+		     var text = document.getElementById(switchTextDiv);
+		     if(ele.style.display == "none") {
+  		     ele.style.display = "block";
+ 		     }
+		     }
+    function toggleRepo(button, element) {
+		     
+		     }
+	</script>
+</head>
+<html>
+  <body>
+    <div class="header"><%= image_tag "header.png" %></div>
+
+    <div class="text"><p>Maize a is tool for visualizing development of public projects of all sizes that use GitHub.  If you are anyone from a small scale developer, commiting to one or a few repositories or a large development organization, tracking development amonng a large number of repos and developers, Maize is right for you!<br /><br />If you want to view commits for an individual repository, click on repo!  Want to see your or someone else's commits to a number of repositories, choose user!  Or if your trying to track a large number of repositories under one organization, choose organization!</p></div>
+
+    <div class="button_group">
+ 	  <div class="buttons"><a id="displayRepo" href="javascript:toggle('toggleRepo','displayRepo');"><%= image_tag "repo.png" %></a></div>
+      <div class="buttons"><a id="displayUser" href="javascript:toggle('toggleUser','displayUser');"><%= image_tag "user.png" %></a></div>
+	  <div class="buttons"><a id="displayOrg" href="javascript:toggle('toggleOrg','displayOrg');"><%= image_tag "org.png" %></a></div>
+    </div>
+
+    <%= form_tag({controller: "graph", action: "index"}) do %>
+    <div id="owner_field" class="button_group">
+      <%= label_tag :owner, "Owner of repository" %>
+      <%= text_field_tag :owner %></div>
+      
+      <div id="repo_field" class="button_group" style="display: none"><%= label_tag :repo_name, "Repository name" %>
+      <%= text_field_tag :repo_name %>
+    </div>
+    <div id="toggleRepo" class="toggle" style="display: none"><h1>peek-a-boo1</h1>     
+      <%= radio_button_tag(:repo, "add_sub") %>
+      <%= label_tag(:repo, "Additions and Subtractions") %>
+      
+      <%= radio_button_tag(:repo, "total") %>
+      <%= label_tag(:repo, "Total Commits") %>
+      
+      
+      <%= radio_button_tag(:repo, "per_user") %>
+      <%= label_tag(:repo, "Commits per user") %>
+    </div>
+    <div id="toggleUser" class="toggle" style="display: none"><h1>peek-a-boo2</h1>
+      <%= radio_button_tag(:user, "per_proj") %>
+      <%= label_tag(:user, "Commits per project") %>
+      
+      <%= radio_button_tag(:user, "total") %>
+      <%= label_tag(:user, "Total Commits") %>
+    </div>
+    <div id="toggleOrg" class="toggle" style="display: none"><h1>peek-a-boo3</h1>
+      <%= radio_button_tag(:org, "per_proj") %>
+      <%= label_tag(:org, "Commits per Project") %>
+      
+      <%= radio_button_tag(:org, "total") %>
+      <%= label_tag(:org, "Total Commits") %>
+    </div>
+    <div class="button_group">
+    <%= submit_tag "submit", class: "submit_button" %>
+    </div>
+
+    <div class="graph_window"></div>
+    <% end %>
+  </body>
+</html> 
+

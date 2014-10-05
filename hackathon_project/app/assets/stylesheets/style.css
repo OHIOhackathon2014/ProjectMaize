@@ -27,7 +27,7 @@ a:link, a:visited, a:active{
 
 .buttons{
 	float: left;
-	width: 33%;
+	width: 25%;
 }
 
 input{
@@ -36,7 +36,7 @@ input{
 
 .button_group{
 	margin: 50px auto;
-	width: 960px;
+	width: 700px;
 	text-align: center;
 }
 
