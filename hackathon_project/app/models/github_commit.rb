@@ -29,11 +29,12 @@ class GithubCommit
   end
 
   def changes
-    [@json['files'].map{|f| f['changes']}.reduce(:+), MAX].min
+    #[@json['files'].map{|f| f['changes']}.reduce(:+), MAX].min
+    total
   end
   
   def date_parse(d)
-    @date = DateTime.parse d
+    @date = DateTime.parse(d).change(offset: -4)
   end
   
   # Example: generate_commits('OHIOhackathon2014', 'ProjectMaize')
