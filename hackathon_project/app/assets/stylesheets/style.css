@@ -30,3 +30,9 @@ input{
 .toggle{
 	text-align: center;
 }
+
+.text{
+	font-family: helvetica;
+	font-size: 14;
+	text-align: center;
+}
