@@ -3,6 +3,8 @@ Project Maize
 =============
 A convient web app to visualize GitHub commits to a project(s) and to track user development.
 
+![Maize screenshot](https://pbs.twimg.com/media/BzJs2axCUAA1m5l.png)
+
 Team Members:
 =============
 
@@ -16,7 +18,7 @@ http://www.galvintjime.com/
 Nathan Seese
 The Ohio State University;
 Sophmore;
-CS Major;
+GIS Major;
 
 Joe Van Gundy
 The Ohio State University
